@@ -73,6 +73,10 @@ RUN cd ${WORKDIRECTORY} \
     && python -c 'import tensorflow as tf; print("Tensorflow version " + tf.__version__)' \
     && deactivate
 
+RUN echo "echo Commande 'python_env' pour utiliser Python 3..." >> ${WORKDIRECTORY}/.bash_profile
+RUN echo "echo Commande 'deactivate' pour quitter environnement virtuel Python 3..." >> ${WORKDIRECTORY}/.bash_profile
+RUN echo "alias python_env='. /opt/venv/bin/activate && python'" >> ${WORKDIRECTORY}/.bash_profile
+
 RUN cd ${WORKDIRECTORY} \
     && git clone git://github.com/zaiste/vimified.git \
     && ln -sfn vimified/ ${WORKDIRECTORY}/.vim \
