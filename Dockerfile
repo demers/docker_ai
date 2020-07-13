@@ -14,6 +14,9 @@ ENV WORKDIRECTORY=/home/ubuntu
 ENV USERNAME=ubuntu
 ENV PASSWORD=ubuntu
 
+ENV EMAIL="fndemers@gmail.com"
+ENV NAME="F.-Nicola Demers"
+
 RUN apt-get update
 
 RUN apt install -y apt-utils
@@ -70,6 +73,9 @@ RUN apt install -y xauth vim-gtk
 RUN apt-get install -y build-essential cmake python3-dev
 
 WORKDIR ${WORKDIRECTORY}
+
+RUN echo "git config --global user.email '$EMAIL'" >> ${WORKDIRECTORY}/.bash_profile
+RUN echo "git config --global user.name '$NAME'" >> ${WORKDIRECTORY}/.bash_profile
 
 RUN cd ${WORKDIRECTORY} \
     && . /opt/venv/bin/activate \
