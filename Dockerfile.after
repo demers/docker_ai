@@ -1,15 +1,18 @@
 
 # Install all you want here...
 RUN apt-get update && apt-get install \
-  -y --no-install-recommends python3 python3-virtualenv
+  -y --no-install-recommends python3 python3-venv
+  #-y --no-install-recommends python3 python3-virtualenv
 
 ENV VIRTUAL_ENV=/opt/venv
-RUN python3 -m virtualenv --python=/usr/bin/python3 $VIRTUAL_ENV
+#RUN python3 -m virtualenv --python=/usr/bin/python3 $VIRTUAL_ENV
+RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 RUN cd ${WORKDIRECTORY} \
     && . /opt/venv/bin/activate \
     && pip install --upgrade pip \
+    && pip install -U setuptools \
     && pip install --upgrade tensorflow \
     && python -c 'import tensorflow as tf; print("Tensorflow version " + tf.__version__)' \
     && deactivate
