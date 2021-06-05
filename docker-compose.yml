@@ -6,11 +6,14 @@ services:
     image: ai
     container_name: ai
     volumes:
-      - "data_work:/home/ubuntu/work"
+      - "data_work:/home/ubuntu"
+      - "/home/demers/share:/home/ubuntu/share"
+      - "/dev/shm:/dev/shm"
     #restart: always
     ports:
       - "22:22"
-      - "5901:5901"
+      - "6080:80"
+      - "5900:5900"
     network_mode: "host"
 
 volumes:
